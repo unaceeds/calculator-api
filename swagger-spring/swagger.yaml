@@ -1,0 +1,157 @@
+swagger: '2.0'
+info:
+  title: "CalculatorAPI"
+  version: '1.0.0'
+host: "localhost:8080"
+basePath: "/api"
+schemes:
+- "http"
+paths:
+  /:
+    get:
+      produces:
+        - application/json
+      parameters:
+        - name: op
+          in: query
+          required: false
+          type: string
+        - name: a
+          in: query
+          required: false
+          type: string
+        - name: b
+          in: query
+          required: false
+          type: string
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/Result'
+        '400':
+          description: 400 response
+    post:
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: Input
+          required: true
+          schema:
+            $ref: '#/definitions/Input'
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/Result'
+        '400':
+          description: 400 response
+  '/add/{a}/{b}':
+    get:
+      produces:
+        - application/json
+      parameters:
+        - name: a
+          in: path
+          required: true
+          type: string
+        - name: b
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/Result'
+        '400':
+          description: 400 response
+  '/sub/{a}/{b}':
+    get:
+      produces:
+        - application/json
+      parameters:
+        - name: a
+          in: path
+          required: true
+          type: string
+        - name: b
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/Result'
+        '400':
+          description: 400 response
+  '/mul/{a}/{b}':
+    get:
+      produces:
+        - application/json
+      parameters:
+        - name: a
+          in: path
+          required: true
+          type: string
+        - name: b
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/Result'
+        '400':
+          description: 400 response
+  '/div/{a}/{b}':
+    get:
+      produces:
+        - application/json
+      parameters:
+        - name: a
+          in: path
+          required: true
+          type: string
+        - name: b
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/Result'
+        '400':
+          description: 400 response
+definitions:
+  Input:
+    type: object
+    properties:
+      op:
+        type: string
+      a:
+        type: number
+        format: double
+      b:
+        type: number
+        format: double
+    title: Input
+  Output:
+    type: object
+    properties:
+      c:
+        type: number
+        format: double
+    title: Output
+  Result:
+    type: object
+    properties:
+      input:
+        $ref: '#/definitions/Input'
+      output:
+        $ref: '#/definitions/Output'
+    title: Result
